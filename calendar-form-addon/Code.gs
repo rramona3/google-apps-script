@@ -2,6 +2,7 @@ var ADDON_TITLE = 'เพิ่มเหตุการณ์ลงในปฏ�
 
 function test() {
   PropertiesService.getDocumentProperties().deleteAllProperties();
+  //Logger.log('2016/3/12'.split(/[-/,]/))
 }
 
 function onVacCalendarAddOnFormSubmitEvent(e) {
@@ -24,8 +25,8 @@ function onVacCalendarAddOnFormSubmitEvent(e) {
   var cal = cals[0];
   
   // add event to the calendar
-  var d = date.split('/');
-  cal.createAllDayEvent(event, new Date(parseInt(d[2]), parseInt(d[0]) - 1, parseInt(d[1])));
+  var d = date.split(/[-/,]/);  // regx - or / or , separator
+  cal.createAllDayEvent(event, new Date(parseInt(d[0]), parseInt(d[1], 10) - 1, parseInt(d[2], 10)));
 }
 
 function onOpen(e) {
